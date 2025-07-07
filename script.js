@@ -4,6 +4,28 @@ document.addEventListener('DOMContentLoaded', function () {
   const loader = document.getElementById('loader');
   const app = document.getElementById('app');
 
+  const frLocale = {
+    code: 'fr',
+    week: { dow: 1, doy: 4 },
+    buttonText: {
+      prev: 'Précédent',
+      next: 'Suivant',
+      today: 'Aujourd\'hui',
+      year: 'Année',
+      month: 'Mois',
+      week: 'Semaine',
+      day: 'Jour',
+      list: 'Planning'
+    },
+    weekText: 'Sem.',
+    allDayText: 'Toute la journée',
+    moreLinkText: 'en plus',
+    noEventsText: 'Aucun évènement à afficher'
+  };
+  if (window.FullCalendar && FullCalendar.globalLocales) {
+    FullCalendar.globalLocales.push(frLocale);
+  }
+
   function applyTheme(dark) {
     if (dark) {
       body.classList.add('dark');
@@ -28,9 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     height: calcHeight(),
-    locale: navigator.language,
+    locale: navigator.language.startsWith('fr') ? 'fr' : 'en',
     eventColor: '#b22222',
     eventSources: [{ url: 'calendar.ics.php', format: 'ics' }],
+    eventSourceFailure: function() {
+      loader.classList.add('hidden');
+      app.classList.remove('blurred');
+    },
+
     loading: function (isLoading) {
       if (isLoading) {
         loader.classList.remove('hidden');
@@ -51,13 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   function calcHeight() {
-    return window.innerHeight - document.querySelector('.top-banner').offsetHeight;
+    const bannerHeight = document.querySelector('.top-banner').offsetHeight;
+    const margin = parseFloat(getComputedStyle(app).marginTop) || 0;
+    return window.innerHeight - bannerHeight - margin;
+
   }
 
   function adjustHeader() {
     const fcHeader = document.querySelector('.fc-scrollgrid-section-header');
     if (fcHeader) {
-      fcHeader.style.top = document.querySelector('.top-banner').offsetHeight + 'px';
+      const margin = parseFloat(getComputedStyle(app).marginTop) || 0;
+      fcHeader.style.top = margin + 'px';
       fcHeader.style.zIndex = '5';
       fcHeader.style.background = 'var(--bg)';
     }
