@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
       loader.classList.add('hidden');
       app.classList.remove('blurred');
     },
+
     loading: function (isLoading) {
       if (isLoading) {
         loader.classList.remove('hidden');
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const bannerHeight = document.querySelector('.top-banner').offsetHeight;
     const margin = parseFloat(getComputedStyle(app).marginTop) || 0;
     return window.innerHeight - bannerHeight - margin;
+
   }
 
   function adjustHeader() {
