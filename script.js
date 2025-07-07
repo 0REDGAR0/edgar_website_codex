@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const body = document.body;
-  const toggle = document.getElementById('theme-toggle');
+  const toggle = document.getElementById('input');
   const loader = document.getElementById('loader');
   const app = document.getElementById('app');
 
