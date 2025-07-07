@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier Edgar</title>
+    <link rel="stylesheet" href="assets/fullcalendar/main.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-banner">
+        <h1>Calendrier Edgar</h1>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span aria-hidden="true">🌙</span>
+        </label>
+    </header>
+
+    <div id="loader" class="loader-wrapper">
+        <!-- From Uiverse.io by Valeron-T -->
+        <div class="loader">
+          <span></span>
+          <div id="dot-1" class="dot"></div>
+          <div id="dot-2" class="dot"></div>
+          <div id="dot-3" class="dot"></div>
+          <div id="dot-4" class="dot"></div>
+          <div id="dot-5" class="dot"></div>
+        </div>
+    </div>
+
+    <div id="app"></div>
+
+    <script src="assets/fullcalendar/main.min.js"></script>
+    <script src="assets/fullcalendar/daygrid.min.js"></script>
+    <script src="assets/fullcalendar/timegrid.min.js"></script>
+    <script src="assets/fullcalendar/list.min.js"></script>
+    <script src="assets/fullcalendar/icalendar.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
