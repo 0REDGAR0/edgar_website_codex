@@ -1,0 +1,432 @@
+:root {
+  --bg: #ffffff;
+  --fg: #222222;
+  --loader-blur: 2px;
+} 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.5s, color 0.5s;
+}
+body.dark {
+  --bg: #121212;
+  --fg: #e0e0e0;
+}
+.top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background: #b22222;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: background 0.5s, color 0.5s;
+}
+#app {
+  margin-top: 60px;
+  padding: 0 1rem;
+  transition: filter 0.5s;
+}
+#app.blurred {
+  filter: blur(4px);
+}
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(var(--loader-blur));
+  background: rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: backdrop-filter 0.5s;
+}
+.loader-wrapper.hidden {
+  display: none;
+}
+/* From Uiverse.io by Valeron-T */
+.loader {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: #212121;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 7px #b22222;
+  border: 1px solid #b22222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  background: transparent;
+  border: 1px solid #b22222;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 5px #b22222;
+}
+.loader::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #b22222;
+  box-shadow: inset 0px 0px 3px #b22222;
+}
+.loader span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  transform-origin: top left;
+  animation: radar81 2s linear infinite;
+  box-shadow: -25px -75px 30px -50px #b22222;
+  border-top: 2px solid #b22222;
+}
+.loader span::before {
+  display: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 100%;
+  background: #b22222;
+  transform-origin: top left;
+  transform: rotate(-90deg);
+  filter: blur(15px) drop-shadow(10px 0px 10px #b22222);
+}
+@keyframes radar81 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#dot-1 { --dot-start-top:100px; --dot-start-left:140px; --dot-end-top:130px; --dot-end-left:20px; --delay:0s; }
+#dot-2 { --dot-start-top:100px; --dot-start-left:0px;   --dot-end-top:-3px;  --dot-end-left:90px; --delay:0s; }
+#dot-3 { --dot-start-top:100px; --dot-start-left:105px; --dot-end-top:18px;  --dot-end-left:18px; --delay:0s; }
+#dot-4 { --dot-start-top:110px; --dot-start-left:150px; --dot-end-top:140px; --dot-end-left:30px; --delay:0s; }
+#dot-5 { --dot-start-top:-5px;  --dot-start-left:85px;  --dot-end-top:125px; --dot-end-left:120px; --delay:4s; }
+.dot {
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: var(--dot-start-top);
+  left: var(--dot-start-left);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255);
+  box-shadow: inset 0px 0px 10px 2px rgba(0,255,182,0.5), 0px 0px 10px 2px rgba(0,255,135,0.3);
+  animation: fly 32s linear infinite;
+  animation-delay: var(--delay);
+}
+@keyframes fly {
+  0% { top: var(--dot-start-top); left: var(--dot-start-left); }
+  100% { top: var(--dot-end-top);   left: var(--dot-end-left);  }
+}
+@media (max-width:600px) {
+  .top-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 0.5rem;
+  }
+  .top-banner h1 {
+    font-size: 1.2rem;
+  }
+  #app {
+    margin-top: 60px;
+    padding: 0.5rem;
+  }
+  .fc-toolbar {
+    flex-wrap: wrap;
+  }
+  .fc-toolbar .fc-button {
+    padding: 0 0.25rem;
+    margin: 2px;
+  }
+}
+
+/* From Uiverse.io by RiccardoRapelli */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch #input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  transition: 0.4s;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sun-moon {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: yellow;
+  transition: 0.4s;
+}
+
+#input:checked + .slider {
+  background-color: black;
+}
+
+#input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+#input:checked + .slider .sun-moon {
+  transform: translateX(26px);
+  background-color: white;
+  animation: rotate-center 0.6s ease-in-out both;
+}
+
+.moon-dot {
+  opacity: 0;
+  transition: 0.4s;
+  fill: gray;
+}
+
+#input:checked + .slider .sun-moon .moon-dot {
+  opacity: 1;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round .sun-moon {
+  border-radius: 50%;
+}
+
+#moon-dot-1 {
+  left: 10px;
+  top: 3px;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  z-index: 4;
+}
+
+#moon-dot-2 {
+  left: 2px;
+  top: 10px;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 4;
+}
+
+#moon-dot-3 {
+  left: 16px;
+  top: 18px;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  z-index: 4;
+}
+
+#light-ray-1 {
+  left: -8px;
+  top: -8px;
+  position: absolute;
+  width: 43px;
+  height: 43px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+#light-ray-2 {
+  left: -50%;
+  top: -50%;
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+#light-ray-3 {
+  left: -18px;
+  top: -18px;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+.cloud-light {
+  position: absolute;
+  fill: #eee;
+  animation-name: cloud-move;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+.cloud-dark {
+  position: absolute;
+  fill: #ccc;
+  animation-name: cloud-move;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+#cloud-1 {
+  left: 30px;
+  top: 15px;
+  width: 40px;
+}
+
+#cloud-2 {
+  left: 44px;
+  top: 10px;
+  width: 20px;
+}
+
+#cloud-3 {
+  left: 18px;
+  top: 24px;
+  width: 30px;
+}
+
+#cloud-4 {
+  left: 36px;
+  top: 18px;
+  width: 40px;
+}
+
+#cloud-5 {
+  left: 48px;
+  top: 14px;
+  width: 20px;
+}
+
+#cloud-6 {
+  left: 22px;
+  top: 26px;
+  width: 30px;
+}
+
+@keyframes cloud-move {
+  0% {
+    transform: translateX(0px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  80% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.stars {
+  transform: translateY(-32px);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.star {
+  fill: white;
+  position: absolute;
+  transition: 0.4s;
+  animation-name: star-twinkle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+#input:checked + .slider .stars {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#star-1 {
+  width: 20px;
+  top: 2px;
+  left: 3px;
+  animation-delay: 0.3s;
+}
+
+#star-2 {
+  width: 6px;
+  top: 16px;
+  left: 3px;
+}
+
+#star-3 {
+  width: 12px;
+  top: 20px;
+  left: 10px;
+  animation-delay: 0.6s;
+}
+
+#star-4 {
+  width: 18px;
+  top: 0px;
+  left: 18px;
+  animation-delay: 1.3s;
+}
+
+@keyframes star-twinkle {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
