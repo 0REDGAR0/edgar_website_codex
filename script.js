@@ -4,28 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const loader = document.getElementById('loader');
   const app = document.getElementById('app');
 
-  const frLocale = {
-    code: 'fr',
-    week: { dow: 1, doy: 4 },
-    buttonText: {
-      prev: 'Précédent',
-      next: 'Suivant',
-      today: 'Aujourd\'hui',
-      year: 'Année',
-      month: 'Mois',
-      week: 'Semaine',
-      day: 'Jour',
-      list: 'Planning'
-    },
-    weekText: 'Sem.',
-    allDayText: 'Toute la journée',
-    moreLinkText: 'en plus',
-    noEventsText: 'Aucun évènement à afficher'
-  };
-  if (window.FullCalendar && FullCalendar.globalLocales) {
-    FullCalendar.globalLocales.push(frLocale);
-  }
-
   function applyTheme(dark) {
     if (dark) {
       body.classList.add('dark');
@@ -50,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     height: calcHeight(),
-    locale: navigator.language.startsWith('fr') ? 'fr' : 'en',
     eventColor: '#b22222',
     eventSources: [{ url: 'calendar.ics.php', format: 'ics' }],
     eventSourceFailure: function() {

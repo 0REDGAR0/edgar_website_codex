@@ -28,11 +28,11 @@ body.dark {
   background: #b22222;
   color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  z-index: 1000;
   transition: background 0.5s, color 0.5s;
 }
 #app {
-  margin-top: 60px;
+  margin-top: 70px;
   padding: 0 1rem;
   transition: filter 0.5s;
 }
@@ -51,10 +51,14 @@ body.dark {
   backdrop-filter: blur(var(--loader-blur));
   background: rgba(0,0,0,0.3);
   z-index: 999;
-  transition: backdrop-filter 0.5s;
+  opacity: 1;
+  transition: 
+    opacity 0.5s ease,
+    backdrop-filter 0.5s ease;
 }
 .loader-wrapper.hidden {
   display: none;
+  transition: backdrop-filter 0.5s;
 }
 /* From Uiverse.io by Valeron-T */
 .loader {
@@ -152,6 +156,7 @@ body.dark {
   #app {
     margin-top: 60px;
     padding: 0.5rem;
+    transition: filter 0.5s;
   }
   .fc-toolbar {
     flex-wrap: wrap;

@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier Edgar</title>
-    <link rel="stylesheet" href="assets/fullcalendar/main.min.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- FullCalendar depuis CDN (optionnel) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css"
+    />
+    <!-- ton CSS local qui importe main.min.css + page-root/... -->
+    <link rel="stylesheet" href="assets/fullcalendar/main.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
     <header class="top-banner">
         <h1>Calendrier Edgar</h1>
@@ -83,12 +90,24 @@
     </div>
 
     <div id="app"></div>
-
-    <script src="assets/fullcalendar/main.min.js"></script>
-    <script src="assets/fullcalendar/daygrid.min.js"></script>
-    <script src="assets/fullcalendar/timegrid.min.js"></script>
-    <script src="assets/fullcalendar/list.min.js"></script>
-    <script src="assets/fullcalendar/icalendar.min.js"></script>
-    <script src="script.js"></script>
 </body>
+
+  <!-- 1) ICAL.js (le parseur iCalendar) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"></script>
+
+    <!-- 2) FullCalendar core -->
+  <script src="assets/fullcalendar/main.min.js"></script>
+
+  <!-- ⇢ add this: all UI locales (en, fr, de, etc.) -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.min.js"></script>
+
+  <!-- 3) Plugins (one copy each) -->
+  <script src="assets/fullcalendar/daygrid.min.js"></script>
+  <script src="assets/fullcalendar/timegrid.min.js"></script>
+  <script src="assets/fullcalendar/list.min.js"></script>
+  <script src="assets/fullcalendar/icalendar.min.js"></script>
+
+  <!-- 4) Ton propre code d’initialisation -->
+  <script src="script.js"></script>
+
 </html>
