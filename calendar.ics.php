@@ -9,31 +9,30 @@ $icsUrls = [
   'https://calendar.google.com/calendar/ical/ukvj5o47thjhubs9b2g93mhde9em6d1p%40import.calendar.google.com/public/basic.ics'
 ];
 
-$printedHeader = false;
-$inEvent = false;
+// Output a minimal calendar header once
+echo "BEGIN:VCALENDAR\r\n";
+echo "VERSION:2.0\r\n";
+echo "PRODID:-//Calendrier Edgar//EN\r\n";
 
-foreach ($icsUrls as $index => $url) {
+foreach ($icsUrls as $url) {
   $data = @file_get_contents($url);
   if ($data === false) continue;
   $lines = explode("\n", $data);
+  $insideEvent = false;
   foreach ($lines as $line) {
     $line = rtrim($line);
-    if (!$printedHeader) {
-      if (stripos($line, 'END:VCALENDAR') === 0) {
-        $printedHeader = true;
-        break;
-      }
+    if (stripos($line, 'BEGIN:VEVENT') === 0) {
+      $insideEvent = true;
       echo $line . "\r\n";
-    } else {
-      if ($line === 'BEGIN:VEVENT') {
-        $inEvent = true;
-      }
-      if ($inEvent) {
-        echo $line . "\r\n";
-      }
-      if ($line === 'END:VEVENT') {
-        $inEvent = false;
-      }
+      continue;
+    }
+    if (stripos($line, 'END:VEVENT') === 0) {
+      $insideEvent = false;
+      echo $line . "\r\n";
+      continue;
+    }
+    if ($insideEvent) {
+      echo $line . "\r\n";
     }
   }
 }
